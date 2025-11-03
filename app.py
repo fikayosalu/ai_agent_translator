@@ -49,7 +49,7 @@ This is the user's message:
 
         response = model.generate_content(prompt)
 
-        return jsonify({"evaluation": response.text})
+        return jsonify({"evaluation": response.text}), 200
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
