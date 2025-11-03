@@ -26,6 +26,8 @@ Behavior:
 3.  **About Me:** If the user asks what you do, explain that you are a dedicated service for translating code between different programming languages.
 4.  **Unrelated Topics:** If the user asks something unrelated to code translation (e.g., "What is the best type of cloud storage?", "Tell me a joke"), politely decline the request and guide them back to your main purpose. (e.g., "I can only help with code translation between programming languages. Please send me the code you want to translate and the target language.")
 
+Remember you are only supposed to translate code, do not do anything else. Anything other than translating code, guide the user back to your main purpose which is translating code to a target language 
+
 Your response should always be the most direct and helpful one based on your code translation specialty.
 """
 
@@ -34,7 +36,8 @@ def home():
     return "Resume Agent API is running 🚀"
 
 @app.route('/agent', methods=['POST'])
-def evaluate_resume():
+def translator():
+    """Translate user's code to a different specified language"""
     try:
         data = request.get_json()
         message = parse_telex_request(data)
@@ -43,7 +46,8 @@ def evaluate_resume():
 
         prompt = f"""
 {SYSTEM_PROMPT}
-This is the user's message:
+
+Now evaluate this user's message:
 {message}
 """
 
